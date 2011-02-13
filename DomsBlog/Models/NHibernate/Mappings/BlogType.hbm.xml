@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DomsBlog"
+                   namespace="DomsBlog.Models.NHibernate.Domain">
+
+  <class name="BlogType" table="BlogTypes">
+    <id name="Id" type="Int32" unsaved-value="-1">
+      <generator class="identity" />
+    </id>
+
+    <property name="Name" type="String" not-null="true" length="32" />
+
+    <bag name="Blogs" inverse="true" lazy="true" optimistic-lock="true" cascade="none">
+      <key column="BlogTypeId" on-delete="noaction" />
+      <one-to-many not-found="exception" class="DomsBlog.Models.NHibernate.Domain.Blog, DomsBlog"/>
+    </bag>
+    
+  </class>
+  
+</hibernate-mapping>

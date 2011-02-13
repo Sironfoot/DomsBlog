@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DomsBlog"
+                   namespace="DomsBlog.Models.NHibernate.Domain">
+
+  <class name="PollOption" table="PollOptions">
+    <id name="Id" type="Int32" unsaved-value="-1">
+      <generator class="identity" />
+    </id>
+
+    <property name="Answer" not-null="true" type="String" length="256" />
+    <property name="Votes" not-null="true" type="Int32" />
+    <property name="OrderIndex" not-null="true" type="Int32" />
+    <property name="SuggestComment" not-null="true" type="Boolean" />
+
+    <many-to-one name="Poll" column="PollId" not-null="true"
+                 class="DomsBlog.Models.NHibernate.Domain.Poll, DomsBlog" />
+    
+  </class>
+  
+</hibernate-mapping>

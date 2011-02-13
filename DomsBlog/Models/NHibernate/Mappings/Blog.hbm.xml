@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DomsBlog"
+                   namespace="DomsBlog.Models.NHibernate.Domain">
+
+  <class name="Blog" table="Blogs">
+    <id name="Id" type="Int32" unsaved-value="-1">
+      <generator class="identity" />
+    </id>
+
+    <property name="ShortTitle" not-null="true" type="String" length="32" />
+    <property name="Title" not-null="true" type="String" length="128" />
+    <property name="Abstract" not-null="true" type="String" length="512" />
+    <property name="PostedDate" not-null="true" type="DateTime" />
+    <property name="IsVisible" not-null="true" type="Boolean" />
+
+    <many-to-one name="BlogType" column="BlogTypeId" not-null="true" class="DomsBlog.Models.NHibernate.Domain.BlogType, DomsBlog"  />
+
+    <bag name="BlogPages" inverse="true" lazy="true" optimistic-lock="true" cascade="none">
+      <key column="BlogId" on-delete="cascade" />
+      <one-to-many class="DomsBlog.Models.NHibernate.Domain.BlogPage, DomsBlog"/>
+    </bag>
+
+    <bag name="BlogComments" inverse="true" lazy="true" optimistic-lock="true" cascade="none">
+      <key column="BlogId" on-delete="cascade" />
+      <one-to-many class="DomsBlog.Models.NHibernate.Domain.BlogComment, DomsBlog"/>
+    </bag>
+
+    <bag name="Images" inverse="true" lazy="true" optimistic-lock="true" cascade="none">
+      <key column="BlogId" on-delete="noaction" />
+      <one-to-many class="DomsBlog.Models.NHibernate.Domain.Image, DomsBlog"/>
+    </bag>
+
+    <bag name="TaggedBlogs" inverse="true" lazy="true" optimistic-lock="true" cascade="none">
+      <key column="BlogId" on-delete="cascade" />
+      <one-to-many class="DomsBlog.Models.NHibernate.Domain.TaggedBlog, DomsBlog"/>
+    </bag>
+
+  </class>
+
+</hibernate-mapping>

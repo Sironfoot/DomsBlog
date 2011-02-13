@@ -1,0 +1,1479 @@
+﻿/*------ Global Reset Style section ----------*/
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+
+/*-------- Utils -----------*/
+
+.fc:after
+{
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+/*
+.fc
+{
+    display: inline-block;
+}*/
+
+/* Hides from IE-mac \*/
+/** html .fc { height: 1%; }
+.fc { display: block; }*/
+/* End hide from IE-mac */
+
+/*-------- Generic styles -------*/
+
+strong
+{
+    font-weight: bold;
+}
+
+em
+{
+    font-style: italic;
+}
+
+ul
+{
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+abbr, acronym,
+span.abbr
+{
+    cursor: help;
+    border-bottom: 1px dashed #000;
+}
+
+p
+{
+    color: #222;
+    line-height: 1.8em;
+    margin-bottom: 1.2em;
+}
+
+a
+{
+    color: #27609B;
+    text-decoration: none;
+}
+
+p > a
+{
+    font-weight: bold;
+}
+
+a:hover
+{
+    color: #000;
+}
+
+span.Hidden
+{
+    display: none;
+}
+
+h1
+{
+    color: #800000;
+}
+
+h2
+{
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+}
+
+pre,
+code
+{
+    border: 1px solid #FFFF00;
+    padding: 0.2em 0.6em;
+    background-color: #FFFFE0;
+    margin: 1.5em 0;
+}
+
+code
+{
+    display: block;
+    padding: 0.6em;
+}
+
+input.input-validation-error,
+textarea.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+span.field-validation-error
+{
+    color: #ff0000;
+    display: block;
+    margin-left: 112px;
+}
+
+p img
+{
+    border: 3px solid #BBD9F7;
+}
+
+p img.ImageFloatRight
+{
+    float: right;
+    margin: 5px 0 1px 10px;
+}
+
+p img.ImageFloatLeft
+{
+    float: left;
+    margin: 5px 10px 1px 0;
+}
+
+img.ImageClear
+{
+    display: inline-block;
+    margin: 10px 0;
+}
+
+p > a > img:hover
+{
+    border: 3px solid #3665BC;
+}
+
+dl dt
+{
+    float: left;
+    width: 100px;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 20px;
+    margin-bottom: 0.4em;
+}
+
+dl dd
+{
+    margin-bottom: 0.4em;
+    margin-left: 120px;
+    line-height: 1.5em;
+}
+
+ul
+{
+    margin-bottom: 1.4em;
+}
+
+ul li,
+ol li
+{
+    margin-bottom: 0.5em;
+}
+
+
+/*-------- Actual styling -------------*/
+
+body
+{
+    font-family: arial,helvetica,sans-serif;
+    font-size: 12px;
+    background-color: #E7EEF5;
+}
+
+div#SkipNavigation
+{
+    left:-9999px;
+    position:absolute;
+    top:-9999px;
+    z-index:9;
+}
+
+div#SkipNavigation a:active,
+div#SkipNavigation a:focus
+{
+    background-color: #17375E;
+    border: 2px solid #000000;
+    color: #FFFFFF;
+    font-weight: bold;
+    left: 10000px;
+    padding: 5px;
+    position: absolute;
+    text-decoration: none;
+    top: 9999px;
+    width: 6em;
+    z-index: 9;
+}
+
+div#MainContainer
+{
+    width: 970px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 1px solid #B4B9BF;
+    border-right: 1px solid #B4B9BF;
+    border-bottom: 1px solid #B4B9BF;
+    background-color: #fff;
+}
+
+div#Header
+{
+    margin-bottom: 10px;
+    position: relative;
+    background: #ADD8E6 url(Images/HeaderGradient.png) left bottom repeat-x;
+}
+
+div#Header p
+{
+    line-height: 1em;
+    margin: 0;
+}
+
+div#Header p#Title
+{
+    font-weight: bold;
+    font-size: 250%;
+    color: #000;
+    padding: 0.3em 0 0.3em 1.5em;
+    position: relative;
+    min-height: 55px;
+}
+
+div#Header p#Title span
+{
+    position: absolute;
+    top: 10px;
+    left: 24px;
+    width: 378px;
+    height: 55px;
+    background: url(Images/Logo.png) left top no-repeat;
+}
+
+div#Header p#Blurb
+{
+    color: #fff;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: url(Images/Avatar.png) right top no-repeat;
+    padding-right: 70px;
+    height: 90px;
+}
+
+div#Header > a
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #FFA500;
+    font-weight: bold;
+    background: url(Images/LargeIcons.png) right -279px no-repeat;
+    padding: 5px 26px 5px 0;
+}
+
+ul#TopNavigation
+{
+    list-style-type: none;
+    margin: 0 1em 0 2em;
+}
+
+ul#TopNavigation li
+{
+    padding: 1em 10px 10px 0;
+    text-decoration: none;
+    display: block;
+    float: left;
+    color: #222222;
+    font-weight: bold;
+    background: url(Images/Tabs.png) right -37px no-repeat;
+    margin-right: 5px;
+    margin-bottom: 0;
+    
+}
+
+ul#TopNavigation li a
+{
+    background: url(Images/Tabs.png) left -37px no-repeat;
+    padding: 1em 15px 10px 12px;
+}
+
+ul#TopNavigation li a span
+{
+    padding-left: 28px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    background-color: #fff;
+}
+
+ul#TopNavigation li:hover
+{
+    background: url(Images/Tabs.png) right top no-repeat;
+}
+
+ul#TopNavigation li:hover a
+{
+    text-decoration: none;
+    background: url(Images/Tabs.png) left top no-repeat;
+}
+
+ul#TopNavigation li.Selected
+{
+    background: url(Images/Tabs.png) right bottom no-repeat;
+}
+
+ul#TopNavigation li.Selected a
+{
+    background: url(Images/Tabs.png) left bottom no-repeat;
+    color: #000;
+}
+
+ul#TopNavigation li#BlogLink a span
+{
+    background: url(Images/LargeIcons.png) 0 -39px no-repeat;
+}
+
+ul#TopNavigation li#PortfolioLink a span
+{
+    background: url(Images/LargeIcons.png) 0 -159px no-repeat;
+}
+
+ul#TopNavigation li#AboutLink a span
+{
+    background: url(Images/LargeIcons.png) 0 1px no-repeat;
+}
+
+ul#TopNavigation li#LinksLink a span
+{
+    background: url(Images/LargeIcons.png) 0 -119px no-repeat;
+}
+
+div#MainContent
+{
+    width: 630px;
+    float: left;
+    padding: 2px 20px 10px 30px;
+}
+
+div#RightSideContent
+{
+    float: right;
+    width: 255px;
+    border-left: 1px solid #E7EEF5;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+div#RightSideContent a
+{
+    font-weight: bold;
+    color: #1B436B;
+}
+
+div#RightSideContent a:hover
+{
+    color: #000;
+}
+
+div#RightSideContent p
+{
+    line-height: 1.4em;
+    margin-left: 5px;
+    margin-bottom: 0;
+}
+
+div#RightSideContent > div
+{
+    padding: 0.7em;
+    margin-bottom: 20px;
+    background-color: #E7EEF5;
+}
+
+div#RightSideContent > div > h2
+{
+    background-color: #800000;
+    color: #fff;
+    padding: 8px;
+    padding-left: 32px;
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+div#RandomImage
+{
+    text-align: center;
+}
+
+div#RandomImage h2
+{
+    text-align: left;
+}
+
+div#RandomImage h2
+{
+    background: url(Images/LargeIcons.png) 4px -234px no-repeat;
+}
+
+div#RandomImage img
+{
+    outline: #27609B solid 3px;
+    margin-bottom: 1em;
+}
+
+div#RandomImage img:hover
+{
+    outline: #000 solid 3px;
+}
+
+div#RandomImage p span
+{
+    display: block;
+    font-size: 80%;
+    font-style: italic;
+    margin-top: 0.4em;
+    line-height: 1.2em;
+}
+
+div#Poll h2
+{
+    background: url(Images/LargeIcons.png) 4px -194px no-repeat;
+}
+
+div#Poll ul
+{
+    list-style-type: none;
+    margin: 1em 0 1em 0.5em;
+}
+
+div#Poll legend
+{
+    display: none;
+}
+
+div#Poll ul li
+{
+    margin-bottom: 0.2em;
+}
+
+div#Poll input[type=submit]
+{
+    font-size: 100%;
+    margin-left:30px;
+    margin-right: 1em;
+}
+
+
+div#Poll ul.PollResults li
+{
+    margin-bottom: 0.8em;
+}
+
+div#Poll ul.PollResults li div
+{
+    background-color: #90EE90;
+    height: 8px;
+    min-width: 1px;
+}
+
+div#Poll a.PollComments
+{
+    margin-left: 28px;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    display: block;
+    padding-left: 20px;
+    background: url(Images/SmallIcons.png) left -60px no-repeat;
+}
+
+div#Poll a.PreviousPolls
+{
+    display: block;
+    margin-top: 1.4em;
+    margin-left: 28px;
+    padding-left: 20px;
+    background: url(Images/SmallIcons.png) left -570px no-repeat;
+    font-style: italic;
+}
+
+div#Tweets h2
+{
+    background: url(Images/LargeIcons.png) 6px -314px no-repeat;
+}
+
+div#Tweets ul
+{
+    margin: 1.5em 0 2em 1.8em;
+    color: #222222;
+    font-size: 95%;
+    list-style-type: none;
+    margin-left: 0;
+}
+
+div#Tweets ul li
+{
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px dashed #B4B9BF;
+}
+
+div#Tweets ul li p
+{
+    background-color: #F4F4F4;
+    margin-left: 0;
+    padding: 4px;
+    line-height: 1.5em;
+}
+
+div#Tweets ul li span
+{
+    color: #515151;
+    display: block;
+    font-style: italic;
+    margin-top: 0.5em;
+    font-size: 90%;
+}
+
+div#Tweets ul li span a
+{
+    color: #515151;
+}
+
+div#Tweets p.TwitterFail
+{
+    background: url(Images/TwitterFail.png) left top no-repeat;
+    padding-left: 110px;
+    min-height: 100px;
+    margin-bottom: 1em;
+}
+
+h1
+{
+    font-weight: bold;
+    font-size: 180%;
+    margin-bottom: 1em;
+}
+
+div#MainContent h2
+{
+    border-bottom: 1px solid #E7EEF5;
+    font-size: 160%;
+    letter-spacing: -1px;
+    clear: both;
+}
+
+ul.Breadcrumbs
+{
+    list-style-type: none;
+    margin: 0;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    margin-top: 0.3em;
+    color: #999;
+}
+
+ul.Breadcrumbs li
+{
+    display: inline;
+    padding-right: 20px;
+    background: url(Images/SmallIcons.png) right -31px no-repeat;
+}
+
+ul.Breadcrumbs li.last
+{
+    background: none;
+}
+
+div#MainContent ul.MiniContentListing
+{
+    margin-top: 1em;
+    list-style-type: none;
+    font-size: 110%;
+}
+
+div#MainContent ul.MiniContentListing li
+{
+    margin-bottom: 0.4em;
+}
+
+div#MainContent ul.MiniContentListing li a
+{
+    padding-left: 25px;
+}
+
+div#MainContent ul.MiniContentListing li#EgoLinkCV a
+{
+    background: url(Images/SmallIcons.png) left -120px no-repeat;
+}
+
+div#MainContent ul.MiniContentListing li#EdoLinkContact a
+{
+    background: url(Images/SmallIcons.png) left -90px no-repeat;
+}
+
+div#MainContent ul.MiniContentListing li#EgoLinkSitemap a
+{
+    background: url(Images/SmallIcons.png) left -390px no-repeat;
+}
+
+div#MainContent ul.MiniContentListing li#EgoLinkLegal a
+{
+    background: url(Images/SmallIcons.png) left -180px no-repeat;
+}
+
+div#MainContent ul.ContentListing
+{
+    list-style-type: none;
+    margin-left: 0;
+    margin-top: 1.5em;
+}
+
+div#MainContent ul.ContentListing h2
+{
+    margin: 0;
+}
+
+div#MainContent ul.ContentListing > li
+{
+    margin-bottom: 3em;
+}
+
+div#MainContent ul.ContentListing p
+{
+    margin-bottom: 1em;
+}
+
+div#MainContent ul.ContentListing p > a > img,
+div#MainContent ul.ContentListing p > img
+{
+    float: right;
+    border: 2px solid #BBD9F7;
+    margin-left: 1em;
+    margin-top: 5px;
+}
+
+a.BlogPreviewPic img
+{
+    max-height: 60px;
+}
+
+div#MainContent ul.ContentListing p > a > img:hover
+{
+    border: 2px solid #3665BC;
+}
+
+
+ul.ImagesList
+{
+    margin-left: 0;
+    list-style-type: none;
+}
+
+ul.ImagesList a img
+{
+    border: 2px solid #BBD9F7;
+}
+
+ul.ImagesList li
+{
+    float: right;
+    width: 310px;
+    text-align: center;
+    clear: right;
+    padding: 20px 0 25px 0;
+}
+
+ul.ImagesList li.Odd
+{
+    float: left;
+    clear: left;
+}
+
+ul.ImagesList > li > p
+{
+    font-size: 90%;
+    padding: 5px 35px 0 35px;
+}
+
+ul.ImagesList a:hover img
+{
+    border: 2px solid #3665BC;
+}
+
+
+div#MainContent p.BlogInfo,
+div#MainContent p.PorfolioInfo,
+div#MainContent p.PollInfo
+{
+    text-align: right;
+    margin-bottom: 1.5em;
+    color: #6E6E6E;
+    margin-top: 2px;
+    font-size: 90%;
+}
+
+div#MainContent p.BlogInfo span,
+div#MainContent p.PorfolioInfo span,
+div#MainContent p.PollInfo span
+{
+    float: left;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    background: url(Images/SmallIcons.png) 0 0 no-repeat;
+}
+
+div#MainContent p.PorfolioInfo span
+{
+    background: url(Images/SmallIcons.png) left -270px no-repeat;
+}
+
+div#MainContent p.PorfolioInfo span.SiteInfo
+{
+    float: none;
+    background: url(Images/SmallIcons.png) left -450px no-repeat;
+}
+
+div#MainContent p.PollInfo span
+{
+    background: url(Images/SmallIcons.png) left -570px no-repeat;
+}
+
+div#MainContent p.BlogInfo a,
+div#MainContent p.PorfolioInfo a,
+div#MainContent p.PollInfo a
+{
+    color: #6E6E6E;
+    text-decoration: none;
+    padding-left: 20px;
+    margin-left: 1em;
+    padding-bottom: 5px;
+    font-weight: normal;
+}
+
+div#MainContent p.PorfolioInfo a
+{
+    margin: 0;
+    padding: 0;
+}
+
+div#MainContent ul.ContentListing ul.PortfolioTools li
+{
+    margin-bottom: 0.3em;
+}
+
+div#MainContent p.BlogInfo a.Comments,
+div#MainContent p.PollInfo a.Comments
+{
+    background: url(Images/SmallIcons.png) 0 -60px no-repeat;
+}
+
+div#MainContent p.BlogInfo a.NoComments,
+div#MainContent p.PollInfo a.NoComments
+{
+    background: url(Images/SmallIcons.png) 0 -240px no-repeat;
+}
+
+div#MainContent p.BlogInfo a.BlogImages
+{
+    background: url(Images/SmallIcons.png) 0 -150px no-repeat;
+}
+
+div#MainContent p.BlogInfo a:hover,
+div#MainContent p.PorfolioInfo a:hover,
+div#MainContent p.PollInfo a:hover
+{
+    color: #000;
+    text-decoration: underline;
+}
+
+div#MainContent ul.ContentListing h3
+{
+    display: inline-block;
+    padding-left: 22px;
+    background: url(Images/SmallIcons.png) 0 -420px no-repeat;
+    font-size: 90%;
+    padding-right: 1em;
+    min-height: 16px;
+}
+
+div#MainContent ul.ContentListing ul.BlogTags
+{
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    font-size: 90%;
+}
+
+div#MainContent ul.ContentListing ul.BlogTags li
+{
+    display: inline;
+    border-right: 1px solid #D3D3D3;
+    padding-right: 0.5em;
+    padding-left: 0.2em;
+}
+
+div#MainContent ul.ContentListing ul.BlogTags li.Last
+{
+    border-right: none;
+}
+
+div#MainContent span.NextPrevNav
+{
+    text-align: right;
+    display: block;
+    margin-bottom: 1em;
+    margin-top: 4em;
+}
+
+div#MainContent span.NextPrevNav a.Prev
+{
+    float: left;
+    padding-left: 20px;
+    background: url(Images/SmallIcons.png) left -301px no-repeat;
+}
+
+div#MainContent span.NextPrevNav a.Next
+{
+    padding-right: 20px;
+    background: url(Images/SmallIcons.png) right -211px no-repeat;
+}
+
+div#MainContent ul.PollList > li > ul > li > span
+{
+    display: block;
+    background-color: #90EE90;
+    height: 10px;
+}    
+
+h1.BlogTitle
+{
+    border-bottom: 1px solid #E7EEF5;
+    margin-bottom: 0;
+}
+
+div#MainContent p.Abstract
+{
+    margin-bottom: 2em;
+    margin-left: 15px;
+}
+
+div.PageSelector
+{
+    clear: both;
+    margin-top: 2em;
+    border-top: 2px solid #B4B9BF;
+    padding-top: 10px;
+    border-bottom: 2px solid #B4B9BF;
+    margin-left: -30px;
+    padding-left: 30px;
+    background-color: #FFF4F4;
+    background: #FFF4F4 url(Images/PagePanelGradient.png) right top repeat-y;
+}
+
+div.PageSelector > p
+{
+    font-weight: bold;
+    font-size: 120%;
+}
+
+div.PageSelector ul
+{
+    margin-left: 1em;
+    list-style-type: none;
+    font-weight: bold;
+}
+
+div.PageSelector ul li
+{
+    padding-left: 25px;
+}
+
+div.PageSelector ul li.Next
+{
+    background: url(Images/SmallIcons.png) left -510px no-repeat;
+}
+
+div.PageSelector ul li.Selected
+{
+    background: url(Images/SmallIcons.png) left -478px no-repeat;
+    font-size: 130%;
+}
+
+div.PageSelector ul li.Previous
+{
+    background: url(Images/SmallIcons.png) left -540px no-repeat;
+}
+
+div#MainContent span.BlogPageNav
+{
+    margin-top: 1em;
+}
+
+div#CommentsSection h2
+{
+    color: #800;
+    font-size: 160%;
+    font-weight: bold;
+    margin-bottom: 0.2em;
+    margin-top: 2em;
+}
+
+div#CommentsSection > span
+{
+    display: block;
+    margin-bottom: 2em;
+}
+
+div#CommentsSection > span > a
+{
+    color: #6E6E6E;
+    padding-left: 25px;
+    background: url(Images/SmallIcons.png) 0 -62px no-repeat;
+}
+
+div#CommentsSection > span > a:hover
+{
+    text-decoration: underline;
+    color: #000;
+}
+
+div#CommentsSection ul
+{
+    list-style-type: none;
+    margin: 0;
+}
+
+div#CommentsSection ul li > ul
+{
+    padding-left: 32px;
+}
+
+div#CommentsSection > ul > li > ul
+{
+    padding-left: 5px;
+}
+
+div#CommentsSection ul li.AdminComment > div
+{
+    background-color: #FFE0E0;
+}
+
+div#CommentsSection ul li.AdminComment > div h3
+{
+    background-color: #FF8C63;
+    background: #FF8C63 url(Images/LargeIcons.png) 5px -359px no-repeat;
+}
+
+
+
+a.PortfolioMainImage img
+{
+    float: right;
+    border: 2px solid #BBD9F7;
+    margin-top: 3px;
+}
+
+a.PortfolioMainImage img:hover
+{
+    border: 2px solid #3665BC;
+}
+
+div#MainContent .NoClear
+{
+    clear: none;
+}
+
+fieldset.StandardForm
+{
+    background-color: #E7EEF5;
+    border: 1px solid #B4B9BF;
+    padding: 2em;
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+fieldset.StandardForm legend
+{
+    display: none;
+}
+
+fieldset.StandardForm input[type=text],
+fieldset.StandardForm textarea
+{
+    border: 1px solid #B4B9BF;
+    font-family: Verdana, Sans-Serif;
+    font-size: 100%;
+    padding: 0.3em;
+    width: 300px;
+}
+
+fieldset.StandardForm textarea
+{
+    width: 450px;
+    height: 200px;
+}
+
+fieldset.StandardForm div.FormRow
+{
+    margin-bottom: 1em;
+}
+
+fieldset.StandardForm div.FormRowCaptcha label,
+fieldset.StandardForm div.FormRow label
+{
+    display: block;
+    width: 100px;
+    float: left;
+    padding-right: 1em;
+    font-weight: bold;
+    text-align: right;
+    padding-top: 0.2em;
+}
+
+div.FormRowCaptcha
+{
+    margin-bottom: 1em;
+    min-height: 130px;
+}
+
+div.FormRowCaptcha > div
+{
+    width: 300px;
+    float: left;
+}
+
+div.FormRowCaptcha > span
+{
+    display: block;
+    clear: both;
+}
+
+fieldset.StandardForm div.Disabled
+{
+    color: #999;
+}
+
+fieldset.StandardForm div.FormRowCheckBox
+{
+    margin-left: 110px;
+}
+
+fieldset.StandardForm div.FormRowCheckBox label
+{
+    position: relative;
+    top: -1px;
+}
+
+div#CommentsSection fieldset div.FormRow > span.BBCodeInstruction
+{
+    display: block;
+    margin-left: 110px;
+    color: #333;
+    font-size: 90%;
+    font-family: Monospace;
+}
+
+div#CommentsSection fieldset div.FormRow > span.EmailMessage
+{
+    font-style: italic;
+    font-size: 90%;
+    padding-left: 0.5em;
+}
+
+fieldset.StandardForm div.FormButtons
+{
+    margin-left: 110px;
+}
+
+div#CommentsSection fieldset div.CommentTitleFormRow
+{
+    margin-top: 2.5em;
+}
+
+div#CommentsSection div.CommentReplyView
+{
+    border: 2px solid #FFFF00;
+    padding: 0.5em;
+    background-color: #FFFFE0;
+    margin-top: 1.5em;
+    padding-top: 2em;
+    position: relative;
+}
+
+div#CommentsSection div.CommentReplyView p
+{
+    font-style: italic;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 1em;
+    line-height: 1.4em;
+    font-size: 90%;
+}
+
+div#CommentsSection div.CommentReplyView h3
+{
+    margin: 0;
+    font-style: normal;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 100%;
+    position: absolute;
+    top: -7px;
+    left: 7px;
+    background-color: #FFFFE0;
+    padding: 0 0.7em;
+}
+
+div#CommentsSection fieldset div.CommentTitleFormRow input[type=text]
+{
+    width: 450px;
+}
+
+div#CommentsSection ul li > div
+{
+    margin: 5px;
+    padding: 1px 1px 5px 1px;
+    margin-bottom: 15px;
+    position: relative;
+    background: #F4F4F4 url(Images/TreeBranch.png) left bottom no-repeat;
+    padding-left: 27px;
+    margin-left: 0;
+}
+
+div#CommentsSection > ul > li ul > li.SiblingsAfter
+{
+    background: url(Images/TreeStick.png) left bottom repeat-y;
+}
+
+div#CommentsSection div.CommentReplyButtons
+{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    
+}
+
+div#CommentsSection div.CommentReplyButtons a
+{
+    color: #5786B7;
+    margin-left: 1.5em;
+    font-weight: bold;
+    padding-left: 18px;
+    background: url(Images/SmallIcons.png) 0 -360px no-repeat;
+    min-height: 16px;
+    display: inline-block;
+}
+
+div#CommentsSection div.CommentReplyButtons a:first-child
+{
+    background: url(Images/SmallIcons.png) 0 -330px no-repeat;
+}
+
+div#CommentsSection div.CommentReplyButtons a:hover
+{
+    color: #fff;
+}
+
+
+
+div#CommentsSection > ul > li > div
+{
+    padding-left: 1px;
+    background: none;
+    background-color: #E7EEF5;
+}
+
+
+
+div#CommentsSection ul li > div > h3
+{
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #000;
+    font-size: 100%;
+    padding: 0.4em;
+    padding-left: 35px;
+    background: url(Images/LargeIcons.png) 5px -77px no-repeat;
+    border-bottom: 1px solid #999;
+    background-color: #D5E8B9;
+    padding-right: 12em;
+}
+
+div#CommentsSection > ul > li > div > h3
+{
+    background-color: #C5EA91;
+}
+
+div#CommentsSection p,
+div#CommentsSection blockquote
+{
+    margin: 0 1.5em 0 1em;
+    font-size: 100%;
+    line-height: 1.5em;
+}
+
+div#CommentsSection p
+{
+    margin-top: 1.5em;
+}
+
+div#CommentsSection p:first-child
+{
+    margin-top: 0;
+}
+
+div#CommentsSection blockquote
+{
+    border: 1px solid skyblue;
+    padding: 0.5em;
+    margin: 0.8em 1em 0.5em 2.5em;
+    font-size: 90%;
+    font-style: italic;
+}
+
+div#CommentsSection pre,
+div#CommentsSection code
+{
+    margin-left: 1.2em;
+    margin-right: 1.2em;
+    padding: 0.5em;
+}
+
+div#CommentsSection blockquote span.author
+{
+    display: block;
+    font-weight: bold;
+}
+
+div#CommentsSection blockquote > p
+{
+    margin-left: 0;
+}
+
+div#CommentsSection p a
+{
+    font-weight: bold;
+}
+
+div#CommentsSection p.CommentInfo
+{
+    color: #999;
+    font-size: 90%;
+}
+
+
+div#CVSection h1
+{
+    margin-bottom: 1em;
+}
+
+div#CVSection h2
+{
+    text-transform: uppercase;
+    font-size: 150%;
+    margin-top: 2em;
+}
+
+div#CVSection ul
+{
+    margin-top: 1em;
+}
+
+div#CVSection ul li
+{
+    margin-bottom: 0.5em;
+    line-height: 1.5em;
+}
+
+div#CVSection div#CV-Eduation ul
+{
+    margin-left: 2em;
+    margin-bottom: 3em;
+}
+
+div#CVSection h3
+{
+    font-weight: bold;
+    margin-top: 2em;
+    text-decoration: underline;
+}
+
+div#CVSection dl#CV-Technical dt,
+div#CVSection dl#CV-Technical dd
+{
+    margin-bottom: 1.3em;
+    line-height: 1.6em;
+}
+
+ul.Sitemap
+{
+    list-style-type: none;
+    margin-left: 0;
+}
+
+ul.Sitemap > li > a
+{
+    color: #27609B;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 130%;
+}
+
+ul.Sitemap > li > a:hover
+{
+    text-decoration: underline;
+}
+
+ul.Sitemap li
+{
+    margin-bottom: 0.8em;
+}
+
+ul.Sitemap > li ul
+{
+    margin-top: 1em;
+}
+
+
+div.LinksSection ul.Links
+{
+    list-style-type: none;
+    margin-left: 0;
+}
+
+div.LinksSection ul.Links h3
+{
+    font-size: 130%;
+    border-bottom: 1px solid #E7EEF5;
+}
+
+div.LinksSection ul.Links li p
+{
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+div.LinksSection ul.Links li
+{
+    position: relative;
+}
+
+div.LinksSection ul.Links li a.LinkInfo
+{
+    margin-bottom: 0.6em;
+    padding-left: 25px;
+    background: url(Images/SmallIcons.png) left -600px no-repeat;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 0px;
+    height: 25px;
+    font-size: 0;
+}
+
+p.sendSuccess
+{
+    font-weight: bold;
+    padding: 0.5em;
+    color: #006400;
+    border: 1px solid #006400;
+    background-color: #C6FFC6;
+}
+
+div#PollContainer h1
+{
+    margin-bottom: 0;
+}
+
+div#PollContainer ul.PollResults
+{
+    list-style-type: none;
+    border: 2px solid #AAFFAF;
+    padding: 1em;
+    margin: 0;
+    background-color: #EDFFEE;
+}
+
+div#PollContainer ul.PollResults li
+{
+    font-size: 100%;
+    margin-bottom: 0.8em;
+}
+
+div#PollContainer ul.PollResults li span
+{
+    display: block;
+    background-color: #90EE90;
+    height: 10px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
+div#Footer
+{
+    text-align: center;
+    margin: 1.5em 0 1em 0;
+}
+
+div#Footer span
+{
+    display: block;
+    font-style: italic;
+    font-size: 90%;
+    color: #666;
+}
+
+div#Footer ul
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+div#Footer ul li
+{
+    display: inline;
+    border-right: 1px solid #D3D3D3;
+    margin: 0;
+    padding: 0 1em 0 0.7em;
+}
+
+div#Footer ul li.Last
+{
+    border-right: none;
+}

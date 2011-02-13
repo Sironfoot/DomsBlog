@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DomsBlog"
+                   namespace="DomsBlog.Models.NHibernate.Domain">
+
+  <class name="Poll" table="Polls">
+    <id name="Id" type="Int32" unsaved-value="-1">
+      <generator class="identity" />
+    </id>
+
+    <property name="Question" not-null="true" type="String" length="256" />
+    <property name="PostedDate" not-null="true" type="DateTime" />
+
+    <bag name="PollOptions" inverse="true" lazy="true" optimistic-lock="true" cascade="none">
+      <key column="PollId" on-delete="cascade" />
+      <one-to-many class="DomsBlog.Models.NHibernate.Domain.PollOption, DomsBlog"/>
+    </bag>
+
+    <bag name="PollComments" inverse="true" lazy="true" optimistic-lock="true" cascade="none">
+      <key column="PollId" on-delete="cascade" />
+      <one-to-many class="DomsBlog.Models.NHibernate.Domain.PollComment, DomsBlog"/>
+    </bag>
+    
+  </class>
+  
+</hibernate-mapping>

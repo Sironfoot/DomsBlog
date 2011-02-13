@@ -1,0 +1,24 @@
+﻿#Header
+{
+    min-height: 110px;
+}
+
+ul#TopNavigation li a
+{
+    background: url(Images/Tabs.png) left -32px no-repeat;
+}
+
+ul#TopNavigation li:hover a
+{
+    background: url(Images/Tabs.png) left 5px no-repeat;
+}
+
+ul#TopNavigation li.Selected a
+{
+    background: url(Images/Tabs.png) left -69px no-repeat;
+}
+
+div#MainContent ul.ContentListing h3
+{
+    display: inline;
+}

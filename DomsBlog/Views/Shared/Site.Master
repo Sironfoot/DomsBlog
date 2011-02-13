@@ -1,0 +1,118 @@
+<%@ Import Namespace="MvcLibrary.MvcHelpers" %>
+<%@ Import Namespace="DomsBlog.Utils" %>
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server">Blog</asp:ContentPlaceHolder> - DominicPettifer.co.uk</title>
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="language" content="en" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="MSSmartTagsPreventParsing" content="TRUE" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    
+    <asp:ContentPlaceHolder ID="MetaContent" runat="server">
+        <meta name="description" content="Dominic Pettifer's Blogging website, including his portfolio of work." />
+        <meta name="keywords" content="C#, ASP.NET, Silverlight, XHTML+CSS, MVC, SEO, Ajax"/>
+    </asp:ContentPlaceHolder>
+
+    <script type="text/javascript" src="<%= Url.ResourceFolder() %>/jquery-1.3.1.min.js"></script>
+    <script type="text/javascript" src="<%= Url.ResourceFolder() %>/Chili/jquery.chili-2.2.js"></script>
+    <script type="text/javascript">
+        ChiliBook.recipeFolder = "<%= Url.ResourceFolder() %>/Chili/";  
+    </script>
+    <link href="<%= Url.ResourceFolder() %>/Site.css" rel="stylesheet" type="text/css" />
+    
+    <!--[if IE 7]> 
+        <link type="text/css" rel="stylesheet" href="<%= Url.ResourceFolder() %>/Site-ie7.css" /> 
+    <![endif]--> 
+    
+    <link rel="shortcut icon" href="<%= Url.ResourceFolder() %>/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/Feeds/LatestBlogs" />
+    
+</head>
+<body>
+
+    <div id="SkipNavigation">
+        <ul>
+            <li><a href="#TopNavigation">Skip to Navigation</a></li>
+            <li><a href="#FirstHeader">Skip to Content</a></li>
+            <li><a href="#RightSideContent">Skip to Side bar</a></li>
+        </ul>
+    </div>
+
+    <div id="MainContainer">
+
+        <div id="Header" class="fc">
+            <p id="Title"><a href="/">DominicPettifer.co.uk<span></span></a></p>
+            <p id="Blurb">C#, ASP.NET, Silverlight, XHTML+CSS, MVC, SEO, Ajax and more...</p>
+
+            <a href="/Feeds/LatestBlogs">RSS</a>
+            
+            <ul id="TopNavigation" class="fc">
+                <li id="BlogLink"<%= Html.IsControllerSelected("Blog") ? " class=\"Selected\"" : "" %>>
+                    <a href="<%= Url.Action("Index", "Blog") %>"><span>My Blog</span></a>
+                </li>
+                <li id="PortfolioLink"<%= Html.IsControllerSelected("Portfolio") ? " class=\"Selected\"" : "" %>>
+                    <a href="<%= Url.Action("Index", "Portfolio") %>"><span>Portfolio</span></a>
+                </li>
+                <li id="AboutLink"<%= Html.IsControllerSelected("Ego") ? " class=\"Selected\"" : "" %>>
+                    <a href="<%= Url.Action("Index", "Ego") %>"><span>About Me</span></a>
+                </li>
+                <li id="LinksLink"<%= Html.IsControllerSelected("Links") ? " class=\"Selected\"" : "" %>>
+                    <a href="<%= Url.Action("Index", "Links") %>"><span>Links</span></a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="Content" class="fc">
+            <div id="MainContent">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+        
+            <div id="RightSideContent">
+                
+                <% Html.RenderPartial("RandomImage", ViewData["RandomImage"], new ViewDataDictionary()); %>
+
+                <div id="Poll">
+                    <h2>Quick Poll</h2>
+                    
+                    <% Html.RenderPartial("PollApplet", (DomsBlog.Models.Service.PollView)ViewData["LatestPoll"]); %>
+                </div>
+                
+                <% Html.RenderPartial("TwitterFeed", ViewData["TwitterFeed"]); %>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div id="Footer">
+        <ul>
+            <li><a href="/About">About</a></li>
+            <li><a href="/About/Sitemap">Sitemap</a></li>
+
+            <li><a href="/About/Legal">Legal</a></li>
+            <li class="Last"><a href="/About/Contact">Contact</a></li>
+        </ul>
+        <p>
+            Copyright &copy; 2009 DominicPettifer.co.uk - All Rights Reserved. Patent pending.
+            <span>(This page executed in <%= MvcLibrary.ExecutionTimer.GetExecutionTimeSoFar() %> seconds)</span>
+        </p>
+    </div>
+    
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    try
+    {
+        var pageTracker = _gat._getTracker("UA-3370543-2");
+        pageTracker._setVar(getSilverlightVersion());
+        pageTracker._trackPageview();
+    } catch (err) { }
+</script>
+
+
+</body>
+</html>

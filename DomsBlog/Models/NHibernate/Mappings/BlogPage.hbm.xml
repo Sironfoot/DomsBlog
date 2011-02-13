@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DomsBlog"
+                   namespace="DomsBlog.Models.NHibernate.Domain">
+
+  <class name="BlogPage" table="BlogPages">
+    <id name="Id" type="Int32" unsaved-value="-1">
+      <generator class="identity" />
+    </id>
+
+    <property name="PageName" type="String" not-null="true" length="32" />
+    <property name="PageNumber" type="Int32" not-null="true" />
+    <property name="TextContent" type="String" not-null="true" />
+
+    <many-to-one name="Blog" column="BlogId" not-null="true"
+                 class="DomsBlog.Models.NHibernate.Domain.Blog, DomsBlog" />
+  </class>
+  
+</hibernate-mapping>

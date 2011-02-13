@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DomsBlog"
+                   namespace="DomsBlog.Models.NHibernate.Domain">
+
+  <class name="BlogComment" table="BlogComments">
+    <id name="Id" type="Int32" unsaved-value="-1">
+      <generator class="identity" />
+    </id>
+
+    <property name="Title" type="String" not-null="true" length="64" />
+    <property name="TextContent" type="String" not-null="true" length="4000" />
+    <property name="Author" type="String" not-null="false" length="64" />
+    <property name="EmailAddress" type="String" not-null="false" length="128" />
+    <property name="EmailOnReply" type="Boolean" not-null="true" />
+    <property name="Website" type="String" not-null="false" length="256" />
+    <property name="IPAddress" type="String" not-null="true" length="64" />
+    <property name="IsAdminComment" type="Boolean" not-null="true" />
+    <property name="PostedDate" type="DateTime" not-null="true" />
+
+    <many-to-one name="Blog" column="BlogId" not-null="true"
+                 class="DomsBlog.Models.NHibernate.Domain.Blog, DomsBlog" />
+    <many-to-one name="ParentComment" column="ParentCommentId" not-null="false"
+                 class="DomsBlog.Models.NHibernate.Domain.BlogComment, DomsBlog" />
+    
+    <bag name="ChildComments" inverse="true" lazy="true" optimistic-lock="true" cascade="none">
+      <key column="ParentCommentId" on-delete="cascade" />
+      <one-to-many class="DomsBlog.Models.NHibernate.Domain.BlogComment, DomsBlog"/>
+    </bag>
+    
+  </class>
+</hibernate-mapping>
