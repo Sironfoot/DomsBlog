@@ -14,7 +14,7 @@ namespace MvcLibrary
 
         private long StartTimeTicks = 0;
 
-        public static void StartTimer()
+        public static void StartTimer() 
         {
             ExecutionTimer timer = new ExecutionTimer();
             timer.StartTimeTicks = DateTime.Now.Ticks;
@@ -24,6 +24,8 @@ namespace MvcLibrary
             if (context.Items[CONTEXT_KEY] == null)
             {
                 context.Items.Add(CONTEXT_KEY, timer);
+
+                string myTest = "Hello world";
             }
         }
 
