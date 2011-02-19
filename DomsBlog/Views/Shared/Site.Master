@@ -45,7 +45,7 @@
 
         <div id="Header" class="fc">
             <p id="Title"><a href="/">DominicPettifer.co.uk<span></span></a></p>
-            <p id="Blurb">C#, ASP.NET, Silverlight, XHTML+CSS, MVC, SEO, Ajax and more...</p>
+            <p id="Blurb">C#, ASP.NET MVC, HTML5, CSS3, JavaScript, Ajax, IOC and more...</p>
 
             <a href="/Feeds/LatestBlogs">RSS</a>
             
@@ -95,7 +95,7 @@
             <li class="Last"><a href="/About/Contact">Contact</a></li>
         </ul>
         <p>
-            Copyright &copy; 2009 DominicPettifer.co.uk - All Rights Reserved. Patent pending.
+            Copyright &copy; <%= DateTime.Now.Year %> DominicPettifer.co.uk - All Rights Reserved. Patent pending.
             <span>(This page executed in <%= MvcLibrary.ExecutionTimer.GetExecutionTimeSoFar() %> seconds)</span>
         </p>
     </div>
