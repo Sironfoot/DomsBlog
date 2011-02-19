@@ -17,6 +17,8 @@ namespace DomsBlog.Models.NHibernate.Domain
         public virtual string IPAddress { get; set; }
         public virtual bool IsAdminComment { get; set; }
         public virtual DateTime PostedDate { get; set; }
+        public virtual bool Approved { get; set; }
+        public virtual string ApprovalKey { get; set; }
 
         public virtual BlogComment ParentComment { get; set; }
         public virtual IList<BlogComment> ChildComments { get; set; }
