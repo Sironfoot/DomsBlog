@@ -147,11 +147,10 @@ namespace DomsBlog.Models.Repositories
                             "INNER JOIN b.BlogType AS bt " +
                             "INNER JOIN b.TaggedBlogs tb " +
                             "INNER JOIN tb.Tag t " +
-                            "LEFT OUTER JOIN b.BlogComments AS comments " +
+                            "LEFT OUTER JOIN b.BlogComments AS comments WITH comments.Approved = 1 " +
                             "LEFT OUTER JOIN b.Images AS images " +
                          "WHERE b.IsVisible = 1 " +
                             "AND t.Id = " + tagId + " " +
-                            "AND comments.Approved = 1 " +
                          "GROUP BY b.Id, b.Title, b.Abstract, b.PostedDate, bt.Name " +
                          "ORDER BY b.PostedDate DESC";
 
@@ -218,10 +217,9 @@ namespace DomsBlog.Models.Repositories
             string hql = "SELECT b.Id, b.Title, b.Abstract, b.PostedDate, bt.Name, COUNT(DISTINCT images), COUNT(DISTINCT comments) " +
                          "FROM Blog AS b " +
                             "INNER JOIN b.BlogType AS bt " +
-                            "LEFT OUTER JOIN b.BlogComments AS comments " +
+                            "LEFT OUTER JOIN b.BlogComments AS comments WITH comments.Approved = 1 " +
                             "LEFT OUTER JOIN b.Images AS images " +
                          "WHERE b.IsVisible = 1 " +
-                            "AND comments.Approved = 1 " +
                          "GROUP BY b.Id, b.Title, b.Abstract, b.PostedDate, bt.Name " +
                          "ORDER BY b.PostedDate DESC";
 
