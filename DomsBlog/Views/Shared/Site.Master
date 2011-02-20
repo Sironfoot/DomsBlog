@@ -13,7 +13,7 @@
     
     <asp:ContentPlaceHolder ID="MetaContent" runat="server">
         <meta name="description" content="Dominic Pettifer's Blogging website, including his portfolio of work." />
-        <meta name="keywords" content="C#, ASP.NET, Silverlight, XHTML+CSS, MVC, SEO, Ajax"/>
+        <meta name="keywords" content="C#, ASP.NET MVC, HTML5 + CSS3, JavaScript, Ajax, IOC"/>
     </asp:ContentPlaceHolder>
 
     <script type="text/javascript" src="<%= Url.ResourceFolder() %>/jquery-1.3.1.min.js"></script>
