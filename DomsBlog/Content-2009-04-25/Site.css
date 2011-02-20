@@ -995,6 +995,13 @@ div#CommentsSection ul li.AdminComment > div h3
     background: #FF8C63 url(Images/LargeIcons.png) 5px -359px no-repeat;
 }
 
+div#CommentsSection .sendSuccess
+{
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
 
 
 a.PortfolioMainImage img

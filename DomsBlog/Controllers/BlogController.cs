@@ -19,6 +19,7 @@ using DomsBlog.Utils;
 
 namespace DomsBlog.Controllers
 {
+    [ValidateInput(false)]
     public class BlogController : MasterController
     {
         private IBlogService BlogService = null;
@@ -81,10 +82,11 @@ namespace DomsBlog.Controllers
         {
             int replyId = Int32.TryParse(Request.QueryString["replyId"], out replyId) ? replyId : -1;
             bool replyWithQuote = Boolean.TryParse(Request.QueryString["replyWithQuote"], out replyWithQuote) ? replyWithQuote : false;
-            int commentFadeId = Int32.TryParse(Request.QueryString["fadeComment"], out commentFadeId) ? commentFadeId : -1;
+
+            bool commentApproval = Boolean.TryParse(Request.QueryString["awaitingApproval"], out commentApproval) ? commentApproval : false;
 
             BlogPageView blogPageView = BlogService.GetBlogPage(id.Value, page != null ? page.Value : 1,
-                replyId, replyWithQuote, commentFadeId);
+                replyId, replyWithQuote, commentApproval);
 
             string realTitle = UrlEncoder.ToFriendlyUrl(blogPageView.Title);
             string urlTitle = (blogTitle ?? "").Trim().ToLower();
@@ -110,12 +112,11 @@ namespace DomsBlog.Controllers
 
             if (comment.IsValid(new ModelStateWrapper(this.ModelState)))
             {
-                int commentId = BlogService.CreateBlogComment(id, replyId != -1 ? (int?)replyId : null, comment);
-                Response.Redirect("/Blog/" + id + "/" + blogTitle + "?fadeComment=" + commentId +
-                    (pageNumber > 1 ? "&page=" + pageNumber : "") + "#comments");
+                BlogService.CreateBlogComment(id, replyId != -1 ? (int?)replyId : null, comment);
+                Response.Redirect("/Blog/" + id + "/" + blogTitle + "?awaitingApproval=true#postcomment");
             }
 
-            BlogPageView blogPageView = BlogService.GetBlogPage(id, pageNumber, replyId, replyWithQuote, -1);
+            BlogPageView blogPageView = BlogService.GetBlogPage(id, pageNumber, replyId, replyWithQuote, false);
             blogPageView.CommentForm = comment;
 
             return View("View", blogPageView);

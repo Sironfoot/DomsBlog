@@ -37,6 +37,8 @@ namespace DomsBlog.Models.Service
             set { _commentForm = value; }
         }
 
+        public bool CommentAwaitingApproval { get; set; }
+
         public IList<CommentView> Comments { get; set; }
 
         public CommentView ReplyComment { get; set; }

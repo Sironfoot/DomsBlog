@@ -2,7 +2,7 @@
 <%@ Import Namespace="MvcLibrary.Extensions" %>
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<DomsBlog.Models.Service.CommentForm>" %>
 
-<h2 id="postcomment">Leave a Comment</h2>
+
         
 <% if (Model.ReplyComment != null) { %>
 

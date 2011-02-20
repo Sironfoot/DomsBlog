@@ -82,6 +82,17 @@
         <span><a href="#postcomment">Post a Comment</a></span>
         
         <% Html.RenderPartial("CommentList", Model.Comments); %>
+
+        <h2 id="postcomment">Leave a Comment</h2>
+
+        <% if (Model.CommentAwaitingApproval) { %>
+
+        <p class="sendSuccess successFade">
+            <strong>Thank you for your comment.</strong><br /><br />
+            Your comment is awaiting approval by an administrator, and will appear here soon.
+        </p>
+
+        <% } %>
         
         <% Html.RenderPartial("CommentForm", Model.CommentForm); %>
     </div>

@@ -36,7 +36,8 @@ namespace DomsBlog.Models.Repositories
             string hql = "SELECT c.Author, c.EmailAddress " +
                          "FROM BlogComment c " +
                          "WHERE c.Blog.Id = " + blogId + " " +
-                            "AND c.EmailOnReply = 1";
+                            "AND c.EmailOnReply = 1 " +
+                            "AND c.Approved = 1";
 
             IQuery query = session.CreateQuery(hql);
 
@@ -150,6 +151,7 @@ namespace DomsBlog.Models.Repositories
                             "LEFT OUTER JOIN b.Images AS images " +
                          "WHERE b.IsVisible = 1 " +
                             "AND t.Id = " + tagId + " " +
+                            "AND comments.Approved = 1 " +
                          "GROUP BY b.Id, b.Title, b.Abstract, b.PostedDate, bt.Name " +
                          "ORDER BY b.PostedDate DESC";
 
@@ -219,6 +221,7 @@ namespace DomsBlog.Models.Repositories
                             "LEFT OUTER JOIN b.BlogComments AS comments " +
                             "LEFT OUTER JOIN b.Images AS images " +
                          "WHERE b.IsVisible = 1 " +
+                            "AND comments.Approved = 1 " +
                          "GROUP BY b.Id, b.Title, b.Abstract, b.PostedDate, bt.Name " +
                          "ORDER BY b.PostedDate DESC";
 
@@ -312,7 +315,10 @@ namespace DomsBlog.Models.Repositories
                 blogPageView.PostedDate = blog.PostedDate;
                 blogPageView.NumImages = blog.Images.Count;
                 blogPageView.ShortTitle = blog.ShortTitle;
-                blogPageView.NumComments = blog.BlogComments.Count;
+
+                IList<BlogComment> comments = blog.BlogComments.Where(c => c.Approved).ToList();
+
+                blogPageView.NumComments = comments.Count;
 
                 if (page != null)
                 {
@@ -320,8 +326,6 @@ namespace DomsBlog.Models.Repositories
                     blogPageView.PageName = page.PageName;
                     blogPageView.BlogText = page.TextContent;
                 }
-
-                IList<BlogComment> comments = blog.BlogComments;
 
                 blogPageView.Comments = LoadComments(comments
                     .Where(c => c.ParentComment == null)
@@ -358,7 +362,38 @@ namespace DomsBlog.Models.Repositories
             return commentViews;
         }
 
-        public int CreateBlogComment(int blogId, int? parentCommentId, CommentForm commentForm)
+        public BlogComment ApproveComment(int commentId, string approvalKey)
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+
+            BlogComment comment = session.Get<BlogComment>(commentId);
+
+            if (comment != null && (comment.ApprovalKey ?? "").Equals(approvalKey, StringComparison.InvariantCultureIgnoreCase))
+            {
+                comment.Approved = true;
+                comment.ApprovalKey = null;
+
+                session.SaveOrUpdate(comment);
+                session.Flush();
+            }
+
+            return comment;
+        }
+
+        public void DeleteComment(int commentId, string approvalKey)
+        {
+            ISession session = NHibernateHelper.GetCurrentSession();
+
+            BlogComment comment = session.Get<BlogComment>(commentId);
+
+            if (comment != null && (comment.ApprovalKey ?? "").Equals(approvalKey, StringComparison.InvariantCultureIgnoreCase))
+            {
+                session.Delete(comment);
+                session.Flush();
+            }
+        }
+
+        public BlogComment CreateBlogComment(int blogId, int? parentCommentId, CommentForm commentForm)
         {
             ISession session = NHibernateHelper.GetCurrentSession();
 
@@ -372,6 +407,8 @@ namespace DomsBlog.Models.Repositories
             comment.PostedDate = DateTime.Now;
             comment.IsAdminComment = commentForm.IsAdminComment;
             comment.IPAddress = commentForm.IpAddress;
+            comment.Approved = false;
+            comment.ApprovalKey = Guid.NewGuid().ToString();
 
             Blog blog = session.Get<Blog>(blogId);
 
@@ -394,10 +431,10 @@ namespace DomsBlog.Models.Repositories
 
                 session.Save(comment);
                 session.Flush();
-                return comment.Id;
+                return comment;
             }
 
-            return -1;
+            return null;
         }
     }
 }

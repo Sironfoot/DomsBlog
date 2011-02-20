@@ -87,13 +87,15 @@ namespace DomsBlog.Models.Service
             return blogListing;
         }
 
-        public BlogPageView GetBlogPage(int blogId, int pageNumber, int replyId, bool replyIsQuote, int commentFadeId)
+        public BlogPageView GetBlogPage(int blogId, int pageNumber, int replyId, bool replyIsQuote, bool commentAwaitingApproval)
         {
             BlogPageView blogPage = BlogRepository.GetBlogPage(blogId, pageNumber);
 
             blogPage.BlogPages = BlogRepository.GetBlogPageListForBlog(blogId);
 
             blogPage.BlogText = BBDecoding.DecodeBlogText(blogPage.BlogText);
+
+            blogPage.CommentAwaitingApproval = commentAwaitingApproval;
 
             foreach (Match match in Regex.Matches(blogPage.BlogText, @"\[image id=&quot;([0-9]+)&quot; position=&quot;(left|right|center)&quot;\]"))
             {
@@ -129,12 +131,6 @@ namespace DomsBlog.Models.Service
                 {
                     blogPage.BlogText = blogPage.BlogText.Replace(match.Value, "");
                 }
-            }
-
-            CommentView commentToFade = FindCommentInTree(blogPage.Comments, commentFadeId);
-            if (commentToFade != null)
-            {
-                commentToFade.HighlightMe = true;
             }
 
             if (replyId == -1)
@@ -182,26 +178,21 @@ namespace DomsBlog.Models.Service
             return comment;
         }
 
-        public int CreateBlogComment(int blogId, int? parentCommentId, CommentForm comment)
+        public BlogComment ApproveBlogComment(int blogCommentId, string approvalKey)
         {
-            comment.IpAddress = HttpContext.Request.UserHostAddress;
-            comment.ContainerId = blogId;
-            comment.IsAdminComment = false;
-            comment.ParentCommentId = parentCommentId;
+            BlogComment comment = BlogRepository.ApproveComment(blogCommentId, approvalKey);
 
-            comment.YourName = comment.YourName.IsNullEmptyOrWhitespace() ? "Anonymous" : comment.YourName;
-
-            IList<CommentSubscriber> subscribers = BlogRepository.GetCommentSubscribers(blogId);
-
-            int commentId = BlogRepository.CreateBlogComment(blogId, parentCommentId, comment);
-
-            if (subscribers.Count > 0)
+            if (comment != null)
             {
-                MailAddress from = new MailAddress("NO.REPLY@dominicpettifer.co.uk", "DominicPettifer.co.uk");
+                Blog blog = BlogRepository.GetBlogFromId(comment.Blog.Id);
 
-                Blog blog = BlogRepository.GetBlogFromId(blogId);
-                if (blog != null)
+                IList<CommentSubscriber> subscribers = BlogRepository.GetCommentSubscribers(blog.Id);
+
+                if (subscribers.Count > 0)
                 {
+                    MailAddress from = new MailAddress("NO.REPLY@dominicpettifer.co.uk", "DominicPettifer.co.uk");
+
+
                     string subject = "New Comment for blog '" + blog.ShortTitle + "'";
                     string emailMessage = "Hello '##AUTHOR##'\n" +
                                           "\n" +
@@ -235,7 +226,56 @@ namespace DomsBlog.Models.Service
                 }
             }
 
-            return commentId;
+            return comment;
+        }
+
+        public void DeleteBlogComment(int blogCommentId, string approvalKey)
+        {
+            BlogRepository.DeleteComment(blogCommentId, approvalKey);
+        }
+
+        public void CreateBlogComment(int blogId, int? parentCommentId, CommentForm comment)
+        {
+            comment.IpAddress = HttpContext.Request.UserHostAddress;
+            comment.ContainerId = blogId;
+            comment.IsAdminComment = false;
+            comment.ParentCommentId = parentCommentId;
+
+            comment.YourName = comment.YourName.IsNullEmptyOrWhitespace() ? "Anonymous" : comment.YourName;
+
+            BlogComment blogComment = BlogRepository.CreateBlogComment(blogId, parentCommentId, comment);
+
+            Uri url = HttpContext.Request.Url;
+            string websiteUrl = "http://" + url.Host + (url.Port != 80 ? ":" + url.Port : "");
+            string commentValidationUrl = websiteUrl + "/CommentValidation/{0}/" + blogComment.Id + "/" + blogComment.ApprovalKey;
+
+            string subject = "New Comment for blog '" + blogComment.Blog.ShortTitle + "'";
+
+            string body =   "Title: '" + HttpUtility.HtmlEncode(blogComment.Title) + "'<br />" +
+                             "Author: '" + HttpUtility.HtmlEncode(blogComment.Author) + "'<br />" +
+                             "Website: '" + HttpUtility.HtmlEncode(blogComment.Website) + "'<br />" +
+                             "E-mail: '" + (blogComment.EmailAddress.IsNullEmptyOrWhitespace() ? "N/A" : HttpUtility.HtmlEncode(blogComment.EmailAddress)) + "'<br />" +
+                             "IP Address: '" + blogComment.IPAddress + "'<br />" +
+                             "<br />" +
+                             "Comment: " + BBDecoding.DecodeBlogCommentText(blogComment.TextContent) + "<br />" +
+                             "<br />" +
+                             "Posted on: " + blogComment.PostedDate.ToString("d MMMM yyyy - hh:mm:ss") + "<br />" +
+                             "<br />" +
+                             "<br />" +
+                             "<a href=\"" + String.Format(commentValidationUrl, "Approve") + "\">Approve Comment</a> | " +
+                                "<a href=\"" + String.Format(commentValidationUrl, "Delete") + "\">Delete Comment</a>";
+
+            MailAddress to = new MailAddress("sironfoot@msn.com");
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress("contact@dominicpettifer.co.uk");
+            message.To.Add(to);
+            message.Subject = subject;
+            message.Body = body;
+            message.IsBodyHtml = true;
+
+            SmtpClient client = new SmtpClient();
+            client.SendAsync(message, null);
         }
 
         public RssFeed GetRssBlogFeed(int maxRecords, string webAddress, string blogUrl)

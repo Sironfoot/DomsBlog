@@ -21,6 +21,8 @@ namespace DomsBlog.Models.Repositories
         Blog GetBlogFromId(int id);
         IList<Image> GetImagesForBlog(int blogId);
         BlogPageView GetBlogPage(int blogId, int pageNumber);
-        int CreateBlogComment(int blogId, int? childCommentId, CommentForm commentForm);
+        BlogComment CreateBlogComment(int blogId, int? childCommentId, CommentForm commentForm);
+        BlogComment ApproveComment(int commentId, string approvalKey);
+        void DeleteComment(int commentId, string approvalKey);
     }
 }

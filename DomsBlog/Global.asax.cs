@@ -92,6 +92,12 @@ namespace DomsBlog
                 new { controller = "Blog", action = "ViewImages", id = "", blogTitle = "" }
             );
 
+            routes.MapRoute(
+                "CommentValidation",
+                "CommentValidation/{action}/{commentId}/{guid}",
+                new { controller = "CommentValidation" }
+            );
+
             routes.MapRoute("LegacyBlog", "displayBlog.aspx",
                 new { controller = "LegacyBlog", action = "ViewBlog" });
             routes.MapRoute("LegacyBlogComments", "displayComments.aspx",

@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CommentValidationController.cs" />
     <Compile Include="Controllers\EgoController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LegacyBlogController.cs" />
