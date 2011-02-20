@@ -117,6 +117,8 @@ CREATE TABLE BlogComments
 	IPAddress		VARCHAR(64)		NOT NULL,
 	IsAdminComment	BIT				NOT NULL	DEFAULT 0,
 	PostedDate		DATETIME		NOT NULL	DEFAULT GETUTCDATE(),
+	Approved		Bit				NOT NULL	DEFAULT 0,
+	ApprovalKey		VARCHAR(50)		NULL,
 
 	PRIMARY KEY(Id),
 
